@@ -222,6 +222,11 @@ function App() {
     location.pathname.startsWith("/vendor/") || location.pathname.startsWith("/dashboard");
 
   useEffect(() => {
+    if (location.hash) return;
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [location.pathname, location.search, location.hash]);
+
+  useEffect(() => {
     if (!isInitialRouteReady || preloaderDismissedRef.current) return;
     preloaderDismissedRef.current = true;
     dismissPreloader();
@@ -254,4 +259,3 @@ function App() {
 }
 
 export default App;
-
